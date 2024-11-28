@@ -14,7 +14,7 @@ function MusicPlayer(props){
   let [artist, setArtist]=React.useState("");
   let [imageURL, setImageURL]=React.useState("");
   let [spinImage, setSpinImage] = React.useState(false);
-  let brain ;
+  let [brain, setBrain]= React.useState(null);
   //Extracting Song's Metadata
   React.useEffect(() => {
     let base64String ="";
@@ -54,7 +54,10 @@ function MusicPlayer(props){
   async function handlePredict() {
     const blobURL = props.songsURLsList[currentSongIndex];
     const features = await extractFeaturesFromBlobURL(blobURL);
-    
+    console.log("Features are");
+    console.log(features);
+    console.log("Brain is");
+    console.log(brain);
     if (brain && features) {
       brain.classify(features, (error, results) => {
         if (error) {
