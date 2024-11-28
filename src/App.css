@@ -28,11 +28,133 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
+/**********************************/
+
+/*CSS Reset*/
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+body{
+  background-color: #0B2434;
+  display: flex;
+  padding-top:150px;
+  justify-content: center;
+}
+
+main{
+  height:500px;
+  width:400px;
+  background-color: #F5F5F5;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/*Image Container*/
+@keyframes rotate{
+  from{
     transform: rotate(0deg);
   }
-  to {
+
+  to{
     transform: rotate(360deg);
   }
+}
+
+.song-image-container{
+  width:160px;
+  height: 160px;
+  border-radius: 50%;
+  margin-top: 45px;
+  overflow: hidden;
+  animation: rotate 4s linear infinite;
+}
+
+
+.song-image-container img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.no-spining-song-image-container{
+  width:160px;
+  height: 160px;
+  border-radius: 50%;
+  margin-top: 45px;
+  overflow: hidden;
+}
+
+
+.no-spining-song-image-container img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.song-info{
+   width: 350px; 
+   white-space: nowrap; 
+   overflow: hidden; 
+   text-overflow:ellipsis;
+   margin-top: 10px;
+}
+
+.title{
+  text-align: center;
+  color:#2B283A;
+  font-weight: 700;
+  font-size: 1.5em;
+  margin: 0.5em 0;
+}
+
+.artist{
+  text-align: center;
+  font-size: 1.2em; 
+  color: #808080;  
+  font-weight: 400; 
+  margin: 0.2em 0;
+}
+
+.audio-player-component{
+  margin-top: 65px;
+  width:370px;
+}
+
+
+.predict-button{
+  margin-bottom:1px ;
+    background-color:#ff4d00;
+    border-radius: 6px;
+    width: 120px;
+    height: 45px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border:none;
+  }
+
+
+#file-select-button{
+  width:120px;
+  height: 40px;
+  color:#fff;
+  background-color: #ff4d00;
+  border:none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#file-input{
+  display: none;
 }

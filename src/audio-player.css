@@ -1,0 +1,26 @@
+.rhap_container{
+  background-color: transparent;
+  box-shadow:none
+}
+
+.rhap_play-pause-button{
+  color:#ff4d00;
+  font-size: 40px;
+}
+
+.rhap_progress-filled { background-color:#ff4d00
+}
+
+.rhap_current-time{
+  color: #808080;
+}
+
+.rhap_current-time{
+  color: #626161;
+  font-size: 14px;
+}
+
+.rhap_total-time{
+  color: #626161;
+  font-size: 14px;
+}
