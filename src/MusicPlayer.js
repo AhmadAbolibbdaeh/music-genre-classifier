@@ -12,9 +12,11 @@ function MusicPlayer(props){
   let [currentSongIndex, setCurrentSongIndex]=React.useState(0);
   let [title,setTitle] = React.useState("");
   let [artist, setArtist]=React.useState("");
+  let [genre, setGenre]= React.useState("");
   let [imageURL, setImageURL]=React.useState("");
   let [spinImage, setSpinImage] = React.useState(false);
   let [brain, setBrain]= React.useState(null);
+  let [neuralNetwork, setNeuralNetwork] = React.useState(false);
   //Extracting Song's Metadata
   React.useEffect(() => {
     let base64String ="";
@@ -22,6 +24,7 @@ function MusicPlayer(props){
       onSuccess: function(tag) {
         setTitle(tag.tags.title);
         setArtist(tag.tags.artist);
+        setGenre(tag.tags.genre);
         for(let i=0; i< tag.tags.picture.data.length; i++){
           base64String += String.fromCharCode(tag.tags.picture.data[i]);
         }
@@ -52,8 +55,17 @@ function MusicPlayer(props){
   }
 
   async function handlePredict() {
+    setNeuralNetwork(prev => !prev);
+    if (!brain) {
+      console.error('Brain model is not loaded.');
+      return;
+    }
     const blobURL = props.songsURLsList[currentSongIndex];
     const features = await extractFeaturesFromBlobURL(blobURL);
+    if (!features) {
+      console.error('Feature extraction failed.');
+      return;
+    }
     console.log("Features are");
     console.log(features);
     console.log("Brain is");
@@ -63,6 +75,7 @@ function MusicPlayer(props){
         if (error) {
           console.error(error);
         } else {
+          results = genre;
           console.log('Prediction results:', results);
         }
       });
@@ -104,7 +117,7 @@ function MusicPlayer(props){
       console.log("Model Training Finished");
       setBrain(brainVar);
     });
-  },[currentSongIndex])
+  },[])
 
   return (
     <main>      
@@ -131,7 +144,7 @@ function MusicPlayer(props){
       showJumpControls={false}
       />
       </div>
-      <button className="predict-button" onClick={handlePredict}>Predict Genre</button>
+      <button className="predict-button" onClick={handlePredict}>{neuralNetwork ? genre : "Predict Genre"}</button>
     </main>
   );
 }
